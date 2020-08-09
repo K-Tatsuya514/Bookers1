@@ -1,0 +1,30 @@
+<div class="content">
+	<h1 class="title">Editing Book</h1>
+	<%= form_for(@book) do |f| %>
+		<% if @book.errors.any? %>
+			<div class="error-content">
+			  <div id="error_explanation" class="alert alert-danger">
+			  	<h2 class="error-title"><%= pluralize(@book.errors.count, "error") %> prohibited this article from being seved:</h2>
+			    <ul class="error-text">
+			      <% @book.errors.full_messages.each do |message| %>
+			        <li><%= message %></li>
+			      <% end %>
+			    </ul>
+			  </div>
+			</div>
+		<% end %>
+		<div class="form">
+			<%= f.label :title, class: 'boxname' %>
+			<%= f.text_field :title, class: 'box-title' %>
+		</div>
+		<div class="form">
+			<%= f.label :body, class: 'boxname' %>
+			<%= f.text_area :body, class: 'box-body' %>
+		</div>
+		<%= f.submit class: 'submit' %>
+	<% end %>
+
+	<%= link_to 'Show', book_path(@book), class: 'button' %>
+	<span> |</span>
+	<%= link_to 'Back', books_path, class: 'button' %>
+</div>

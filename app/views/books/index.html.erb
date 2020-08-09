@@ -1,0 +1,55 @@
+<div class="content">
+	<p id="notice">
+	 <%=  notice %>
+	</p>
+
+	<h1 class="title">Books</h1>
+	<table>
+		<thead>
+			<%= form_for(@book) do |f| %>
+				<tr>
+					<th><%= f.label :title %></th>
+					<th><%= f.label :body %></th>
+				</tr>
+			<% end %>
+		</thead>
+		<tbody>
+			<% @books.each do |book| %>
+				<tr>
+					<td><%= book.title %></td>
+					<td><%= book.body %></td>
+					<td><%= link_to 'Show', book, class: 'button' %></td>
+					<td><%= link_to 'Edit', edit_book_path(book.id), class: 'button' %></td>
+					<td><%= link_to 'Destroy', book_path(book.id), method: :delete, "data-confirm" => "Are you sure?", class: 'button' %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<h1 class="subtitle">New book</h1>
+	<%= form_for(@book) do |f| %>
+		<% if @book.errors.any? %>
+			<div class="error-content">
+			  <div id="error_explanation" class="alert alert-danger">
+			  	<h2 class="error-title"><%= pluralize(@book.errors.count, "error") %> prohibited this article from being seved:</h2>
+			    <ul class="error-text">
+			      <% @book.errors.full_messages.each do |message| %>
+			        <li><%= message %></li>
+			      <% end %>
+			    </ul>
+			  </div>
+			</div>
+		<% end %>
+		<div class="form">
+			<%= f.label :title, class: 'boxname' %>
+			<%= f.text_field :title, class: 'box-title' %>
+		</div>
+		<div class="form">
+			<%= f.label :body, class: 'boxname' %>
+			<%= f.text_area :body, class: 'box-body' %>
+		</div>
+		<%= f.submit class: 'submit' %>
+	<% end %>
+
+</div>
+

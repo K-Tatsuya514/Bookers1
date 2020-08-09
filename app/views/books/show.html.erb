@@ -1,0 +1,25 @@
+<div class="content-s">
+	<p id="notice-s">
+	 <%=  notice %>
+	</p>
+
+	<%= form_for(@book) do |f| %>
+		<div class="show-content">
+			<%= f.label :title, class: 'show-title' %>:
+			<span class="show-body">
+				<%= @book.title %><br>
+			</span>
+		</div>
+		<div class="show-content">
+			<%= f.label :body, class: 'show-title' %>:
+			<span class="show-body">
+				<%= @book.body %><br>
+			</span>
+		</div>
+	<% end %>
+
+	<%= link_to 'Edit', edit_book_path(@book), class: 'button' %>
+	<span> |</span>
+	<%= link_to 'Back', books_path, class: 'button' %>
+</div>
+
